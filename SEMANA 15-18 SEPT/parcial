@@ -1,1 +1,43 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.ListIterator;
 
+
+public class Materia {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        ArrayList<String> inventariobase = new ArrayList<>();
+        inventariobase.add("sociales");
+        inventariobase.add("piloto - historia");
+        inventariobase.add("fisica");
+        inventariobase.add("lecutura");
+        
+        
+        String[] arregloProveedor = {"Piloto - Biología", "Programación", "Inglés"};
+        
+       inventariobase.addAll(Arrays.asList(arregloProveedor));
+       
+       System.out.print("lista consolidad (antes de la depuracion)");
+       System.out.print("total materias: " + inventariobase.size());
+       System.out.print(inventariobase);
+       System.out.println();
+       
+       ListIterator<String> iterator = inventariobase.listIterator();
+        while (iterator.hasNext()) {
+            String materia = iterator.next();
+            if (materia.startsWith("Piloto")) {
+                iterator.remove(); 
+                
+              }
+        }
+                
+        System.out.println("lista final: (depurado)");
+        System.out.println("Total materias: " + inventariobase.size());
+        System.out.println(inventariobase);
+        
+      }
+        }
