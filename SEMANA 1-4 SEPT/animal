@@ -1,1 +1,23 @@
+package com.mycompany.sesionpoo_animal1;
 
+public class Animal {
+    String nombre;
+    String especie;
+    int edad;
+    String sonido;
+    
+    public Animal(String nombre, String especie, int edad, String sonido) {
+        this.nombre = nombre;
+        this.especie = especie;
+        this.edad = edad;
+        this.sonido = sonido;
+    }
+
+    void mostrarinfo() {
+        System.out.println("nombre: " + nombre + " | especie: " + especie + " | edad: " + edad + " | sonido: " + sonido);
+    }    
+       
+    void mostrarsonido() {
+        System.out.println("el nombre es: " + nombre + " y su sonido es: " + sonido);
+    }
+}
