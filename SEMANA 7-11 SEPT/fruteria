@@ -1,0 +1,51 @@
+package tallerarraylist;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class Problema1Fruteria {
+    public static void main(String[] args) {
+        // 1. Inventario base (ArrayList modificable)[cite: 1]
+        ArrayList<String> inventarioBase = new ArrayList<>();
+        inventarioBase.add("Manzana");
+        inventarioBase.add("Bananos");
+        inventarioBase.add("Naranja");
+        inventarioBase.add("Pera");
+        
+       
+        inventarioBase.add("Uva");
+
+        // 2. Lista del proveedor como un arreglo fijo[cite: 1]
+        String[] arregloProveedor = {"Mango", "Piña", "Kiwi"};
+        List<String> listaProveedor = Arrays.asList(arregloProveedor);
+
+        /* 
+         * ---------------------------------------------------------------------------------
+         * EXPLICACIÓN DEL ERROR:
+         * Si intentamos hacer: listaProveedor.add("Fresa");
+         * 
+         * Java lanza la excepción 'UnsupportedOperationException'.
+         * ¿Por qué ocurre? El método Arrays.asList() retorna una vista/envoltura de tamaño 
+         * fijo respaldada por el arreglo original. Un arreglo tradicional en Java no puede 
+         * cambiar de tamaño (no se le pueden añadir ni eliminar elementos), por lo tanto 
+         * la lista devuelta por Arrays.asList() tampoco permite operaciones de modificación 
+         * de tamaño.
+         * ---------------------------------------------------------------------------------
+         */
+
+        // 3. Inventario consolidado (Junta ambas fuentes sin alterar la original)[cite: 1]
+        ArrayList<String> inventarioConsolidado = new ArrayList<>(inventarioBase);
+        inventarioConsolidado.addAll(listaProveedor); 
+
+      
+        System.out.println("=== INVENTARIO BASE ===");
+        inventarioBase.forEach(fruta -> System.out.println("- " + fruta));
+
+        System.out.println("\n=== LISTA DEL PROVEEDOR (SELLADA) ===");
+        listaProveedor.forEach(fruta -> System.out.println("- " + fruta));
+
+        System.out.println("\n=== INVENTARIO CONSOLIDADO ===");
+        inventarioConsolidado.forEach(fruta -> System.out.println("- " + fruta));
+    }
+}
