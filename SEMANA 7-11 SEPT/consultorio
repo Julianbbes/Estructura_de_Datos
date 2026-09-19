@@ -1,0 +1,61 @@
+package tallerarraylist;
+
+import java.util.ArrayList;
+import java.util.ListIterator;
+
+public class Problema3Consultorio {
+    public static void main(String[] args) {
+        // 1. Lista inicial de 5 pacientes en orden de llegada[cite: 1]
+        ArrayList<String> fila = new ArrayList<>();
+        fila.add("Carlos Gómez");
+        fila.add("María Rodríguez");
+        fila.add("Juan Pérez");
+        fila.add("Ana Martínez");
+        fila.add("Luis Hernández");
+
+        // 2. Reporte con posición en la fila[cite: 1]
+        System.out.println("=== REPORTE DE POSICIONES AL REGISTRARSE ===");
+        ListIterator<String> it = fila.listIterator();
+        while (it.hasNext()) {
+            int posicion = it.nextIndex() + 1; // Base 1 para lectura humana[cite: 1]
+            String paciente = it.next();
+            System.out.println("Posición " + posicion + ": " + paciente);
+        }
+
+        // 3. Reporte en orden inverso (últimos primero)[cite: 1]
+        System.out.println("\n=== REPORTE INVERSO (MÁS RECIENTES PRIMERO) ===");
+        while (it.hasPrevious()) {
+            int posicion = it.previousIndex() + 1;
+            String paciente = it.previous();
+            System.out.println("Posición " + posicion + ": " + paciente);
+        }
+
+        // 4. Insertar paciente de urgencia justo después de la 2ª persona[cite: 1]
+        System.out.println("\n--- Insertando paciente de urgencia ---");
+        
+        // Reiniciamos el iterador al inicio de la fila
+        it = fila.listIterator();
+        
+        // Avanzamos 2 posiciones para pasar a los primeros 2 pacientes[cite: 1]
+        if (it.hasNext()) it.next(); 
+        if (it.hasNext()) it.next(); 
+
+        // Insertamos con el método add() de ListIterator[cite: 1]
+        it.add("URGENCIA - Sofía López");
+
+        // 5. Confirmar el orden completo final[cite: 1]
+        System.out.println("\n=== FILA FINAL CON URGENCIA INCLUIDA ===");
+        for (int i = 0; i < fila.size(); i++) {
+            System.out.println("Lugar " + (i + 1) + ": " + fila.get(i));
+        }
+
+        /*
+         * EXPLICACIÓN:
+         * El paciente de urgencia quedó ubicado exactamente en la POSICIÓN 3 (índice 2)[cite: 1].
+         * ¿Por qué? Porque avanzamos el cursor del ListIterator pasados los dos primeros 
+         * pacientes (posiciones 1 y 2)[cite: 1]. Al llamar a it.add(), el nuevo paciente se inserta 
+         * justo en el lugar donde estaba el cursor, desplazando al paciente 3 original y a los 
+         * demás un lugar hacia atrás de forma limpia[cite: 1].
+         */
+    }
+}
