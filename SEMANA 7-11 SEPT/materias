@@ -1,0 +1,37 @@
+package tallerarraylist;
+
+import java.util.ArrayList;
+import java.util.ListIterator;
+
+public class Problema2Materias {
+    public static void main(String[] args) {
+        // 1. Lista con materias (mínimo dos empiezan con "Piloto")[cite: 1]
+        ArrayList<String> materias = new ArrayList<>();
+        materias.add("Cálculo I");
+        materias.add("Piloto - Robótica Básica");
+        materias.add("Programación Java");
+        materias.add("Piloto - Inteligencia Artificial");
+        materias.add("Bases de Datos");
+
+        System.out.println("=== INICIANDO REVISIÓN Y DEPURACIÓN DE MATERIAS ===");
+
+        // 2. Recorrer y eliminar de forma segura usando ListIterator[cite: 1]
+        // Evita el ConcurrentModificationException de un for-each normal
+        ListIterator<String> it = materias.listIterator();
+        
+        while (it.hasNext()) {
+            String materia = it.next();
+            System.out.println("Revisando: " + materia);
+
+            // Criterio: Nombre empieza por "Piloto"[cite: 1]
+            if (materia.startsWith("Piloto")) {
+                it.remove(); // Eliminación segura durante el recorrido[cite: 1]
+                System.out.println("   [ ELIMINADA por ser materia piloto ]");
+            }
+        }
+
+        // 3. Confirmar la lista final depurada[cite: 1]
+        System.out.println("\n=== LISTA DE MATERIAS FINAL (DEPURADA) ===");
+        materias.forEach(materia -> System.out.println("- " + materia));
+    }
+}
