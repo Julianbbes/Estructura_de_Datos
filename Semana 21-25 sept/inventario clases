@@ -1,0 +1,139 @@
+package tallerarraylist;
+
+import java.util.LinkedList;
+import java.util.Iterator;
+
+public class TallerLinkedList {
+
+    public static void main(String[] args) {
+
+       
+        // 1. CREAR 
+        
+        System.out.println("--- 1. CREAR LA COLECCIÓN ---");
+        LinkedList<String> materias = new LinkedList<>();
+        
+        materias.add("Programación");
+        materias.add("Matemáticas");
+        materias.add("Inglés");
+        materias.add("Bases de Datos");
+        materias.add("Redes");
+        
+        System.out.println("Lista inicial: " + materias);
+        System.out.println();
+
+     
+        // 2. AGREGAR 
+        
+        System.out.println("--- 2. AGREGAR INFORMACIÓN ---");
+        
+        materias.addFirst("Algoritmos");
+        System.out.println("Tras agregar Algoritmos al inicio: " + materias);
+        
+        materias.addLast("Inteligencia Artificial");
+        System.out.println("Tras agregar IA al final: " + materias);
+        
+        materias.add(2, "Estructura de Datos");
+        System.out.println("Tras insertar Estructura de Datos en pos 2: " + materias);
+        System.out.println();
+
+        
+        // 3. CONSULTAR 
+       
+        System.out.println("--- 3. CONSULTAR INFORMACIÓN ---");
+        System.out.println("Elemento en la posición 3: " + materias.get(3));
+        System.out.println("Primer elemento: " + materias.getFirst());
+        System.out.println("Último elemento: " + materias.getLast());
+        System.out.println("¿Contiene 'Inglés'?: " + materias.contains("Inglés"));
+        System.out.println("Posición de 'Bases de Datos': " + materias.indexOf("Bases de Datos"));
+        System.out.println();
+
+       
+        // 4. MODIFICAR 
+       
+        System.out.println("--- 4. MODIFICAR INFORMACIÓN ---");
+        System.out.println("Lista antes del cambio: " + materias);
+        
+        int posMates = materias.indexOf("Matemáticas");
+        if (posMates != -1) {
+            materias.set(posMates, "Matemáticas Aplicadas");
+        }
+        
+        System.out.println("Lista después del cambio: " + materias);
+        System.out.println();
+
+        
+        // 5. ELIMINAR 
+        
+        System.out.println("--- 5. ELIMINAR INFORMACIÓN ---");
+        
+        materias.remove("Inglés");
+        System.out.println("Tras eliminar 'Inglés': " + materias);
+        
+        materias.remove(2);
+        System.out.println("Tras eliminar posición 2: " + materias);
+        
+        materias.removeFirst();
+        System.out.println("Tras eliminar el primero: " + materias);
+        
+        materias.removeLast();
+        System.out.println("Tras eliminar el último: " + materias);
+        System.out.println();
+
+        
+        // 6. RECORRER LA COLECCIÓN
+        
+        System.out.println("--- 6. RECORRER LA COLECCIÓN ---");
+        System.out.println("> Recorrido con FOR clásico:");
+        for (int i = 0; i < materias.size(); i++) {
+            System.out.println("  " + materias.get(i));
+        }
+
+        System.out.println("\n> Recorrido con FOR-EACH:");
+        for (String materia : materias) {
+            System.out.println("  " + materia);
+        }
+        System.out.println();
+
+       
+        // 7. CONTAR Y VERIFICAR
+      
+        System.out.println("--- 7. CONTAR Y VERIFICAR ---");
+        System.out.println("Cantidad de elementos: " + materias.size());
+        if (materias.isEmpty()) {
+            System.out.println("La lista está vacía.");
+        } else {
+            System.out.println("La lista contiene información.");
+        }
+        System.out.println();
+
+      
+        // 8. ELIMINAR TODOS
+        
+        System.out.println("--- 8. ELIMINAR TODOS ---");
+        materias.clear();
+        System.out.println("Lista tras clear(): " + materias);
+        System.out.println("¿Está vacía?: " + materias.isEmpty());
+        System.out.println();
+
+        // RETO ADICIONAL
+       
+        System.out.println("--- RETO ADICIONAL ---");
+        materias.add("Programación");
+        materias.add("Piloto Java");
+        materias.add("Sistemas Operativos");
+        materias.add("Piloto Python");
+        materias.add("Bases de Datos");
+        materias.add("Piloto Web");
+
+        System.out.println("Lista antes de filtrar: " + materias);
+
+        Iterator<String> it = materias.iterator();
+        while (it.hasNext()) {
+            if (it.next().startsWith("Piloto")) {
+                it.remove();
+            }
+        }
+        System.out.println("Lista sin materias 'Piloto': " + materias);
+    }
+}
