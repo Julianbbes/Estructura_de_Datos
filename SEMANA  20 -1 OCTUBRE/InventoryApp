@@ -1,0 +1,61 @@
+
+public class InventoryApp {
+
+    public static void main(String[] args) {
+        // Crear objeto de la lista enlazada
+        Inventory inventory = new Inventory();
+
+        System.out.println("=============================================");
+        System.out.println("       GESTION DE INVENTARIO (POO)          ");
+        System.out.println("=============================================\n");
+
+        // 1. Crear objetos de la clase Product
+        Product p1 = new Product("P01", "Laptop HP", 850.00);
+        Product p2 = new Product("P02", "Mouse Inalambrico", 15.50);
+        Product p3 = new Product("P03", "Teclado Mecanico", 45.00);
+        Product p4 = new Product("P04", "Monitor 24 pulgadas", 199.99);
+        Product p5 = new Product("P05", "Audifonos Gaming", 60.00);
+
+        // 2. Agregar productos a la lista (al inicio y al final)
+        inventory.addLast(p1);
+        inventory.addLast(p2);
+        inventory.addLast(p3);
+        inventory.addLast(p4);
+        inventory.addFirst(p5); // Se inserta al inicio
+
+        // 3. Consultar y recorrer la lista
+        System.out.println("--- INVENTARIO INICIAL (Total: " + inventory.getSize() + " elementos) ---");
+        inventory.displayAll();
+
+        // Consultar primer y ultimo elemento
+        System.out.println("\nPrimer elemento: " + inventory.getFirst());
+        System.out.println("Ultimo elemento: " + inventory.getLast());
+
+        // 4. Buscar un producto por ID
+        System.out.println("\n--- BÚSQUEDA DE PRODUCTO (ID: P02) ---");
+        Product searched = inventory.findById("P02");
+        if (searched != null) {
+            System.out.println("Producto Encontrado: " + searched);
+        } else {
+            System.out.println("Producto no encontrado.");
+        }
+
+        // 5. Modificar un producto
+        System.out.println("\n--- MODIFICAR PRECIO DE P02 ---");
+        boolean updated = inventory.updatePrice("P02", 18.99);
+        if (updated) {
+            System.out.println("Precio modificado con éxito:");
+            System.out.println(inventory.findById("P02"));
+        }
+
+        // 6. Eliminar elementos al inicio y al final
+        System.out.println("\n--- ELIMINANDO ELEMENTOS (Primero y Último) ---");
+        inventory.removeFirst(); // Elimina P05 (Audifonos)
+        inventory.removeLast();  // Elimina P04 (Monitor)
+
+        // 7. Mostrar resultado final
+        System.out.println("\n--- INVENTARIO FINAL (Total: " + inventory.getSize() + " elementos) ---");
+        inventory.displayAll();
+        System.out.println("\n=============================================");
+    }
+}
