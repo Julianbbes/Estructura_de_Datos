@@ -1,0 +1,137 @@
+
+public class Inventory {
+
+    // Clase interna que representa un Nodo de la Lista Enlazada
+    private class Node {
+        Product product;
+        Node next;
+
+        public Node(Product product) {
+            this.product = product;
+            this.next = null;
+        }
+    }
+
+    private Node head; // Primer elemento de la lista
+    private int size;  // Contador de elementos
+
+    public Inventory() {
+        this.head = null;
+        this.size = 0;
+    }
+
+    // --- 1. AGREGAR ELEMENTOS ---
+
+    // Agregar al inicio de la lista
+    public void addFirst(Product product) {
+        Node newNode = new Node(product);
+        newNode.next = head;
+        head = newNode;
+        size++;
+    }
+
+    // Agregar al final de la lista
+    public void addLast(Product product) {
+        Node newNode = new Node(product);
+        if (head == null) {
+            head = newNode;
+        } else {
+            Node current = head;
+            while (current.next != null) {
+                current = current.next;
+            }
+            current.next = newNode;
+        }
+        size++;
+    }
+
+    // --- 2. RECORRER Y CONSULTAR ---
+
+    // Mostrar todos los elementos almacenados
+    public void displayAll() {
+        if (head == null) {
+            System.out.println("La lista se encuentra vacia.");
+            return;
+        }
+        Node current = head;
+        while (current != null) {
+            System.out.println(current.product);
+            current = current.next;
+        }
+    }
+
+    // Consultar el primer elemento
+    public Product getFirst() {
+        if (head != null) {
+            return head.product;
+        }
+        return null;
+    }
+
+    // Consultar el ultimo elemento
+    public Product getLast() {
+        if (head == null) return null;
+        Node current = head;
+        while (current.next != null) {
+            current = current.next;
+        }
+        return current.product;
+    }
+
+    // Consultar la cantidad de elementos (tamaño)
+    public int getSize() {
+        return size;
+    }
+
+    // --- 3. BUSCAR ---
+
+    // Buscar un producto por su ID
+    public Product findById(String id) {
+        Node current = head;
+        while (current != null) {
+            if (current.product.getId().equalsIgnoreCase(id)) {
+                return current.product;
+            }
+            current = current.next;
+        }
+        return null; // Retorna null si no lo encuentra
+    }
+
+    // --- 4. MODIFICAR ---
+
+    // Modificar el precio de un producto existente
+    public boolean updatePrice(String id, double newPrice) {
+        Product product = findById(id);
+        if (product != null) {
+            product.setPrice(newPrice);
+            return true;
+        }
+        return false;
+    }
+
+    // --- 5. ELIMINAR ---
+
+    // Eliminar el primer elemento
+    public void removeFirst() {
+        if (head != null) {
+            head = head.next;
+            size--;
+        }
+    }
+
+    // Eliminar el ultimo elemento
+    public void removeLast() {
+        if (head == null) return;
+
+        if (head.next == null) {
+            head = null;
+        } else {
+            Node current = head;
+            while (current.next.next != null) {
+                current = current.next;
+            }
+            current.next = null;
+        }
+        size--;
+    }
+}
