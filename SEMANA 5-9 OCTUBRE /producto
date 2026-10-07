@@ -1,0 +1,101 @@
+package inventoryApp;
+
+public class Product {
+    // Atributos del producto
+    private int ID;
+    private String name;
+    private int existence;
+    private double price;
+    private String category; // 1. Nuevo atributo agregado
+
+    // Constructor para buscar por ID
+    public Product(int ID) {
+        this.ID = ID;
+    }
+
+    // Constructor principal actualizado para incluir category
+    public Product(int ID, String name, int existence, double price, String category) {
+        this.ID = ID;
+        this.name = name;
+        this.existence = existence;
+        this.price = price;
+        this.category = category; // Asignación al crear el producto
+    }
+
+    // GET: Métodos para consultar datos
+    public int getID() {
+        return ID;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getExistence() {
+        return existence;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    // 2. Método para consultar la categoría
+    public String getCategory() {
+        return category;
+    }
+
+    // SET: Métodos para modificar datos
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setExistence(int existence) {
+        this.existence = existence;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    // 3. Método para modificar la categoría
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    // Compara dos productos por su ID
+    @Override
+    public boolean equals(Object obj) {
+
+        if (this == obj) {
+            return true;
+        }
+
+        if (obj == null) {
+            return false;
+        }
+
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+
+        Product other = (Product) obj;
+
+        return this.ID == other.ID;
+    }
+
+    // 4. Muestra los datos del producto incluyendo la categoría
+    @Override
+    public String toString() {
+        return "Product{" +
+                "ID=" + ID +
+                ", name='" + name + '\'' +
+                ", existence=" + existence +
+                ", price=" + price +
+                ", category='" + category + '\'' +
+                '}';
+    }
+}
