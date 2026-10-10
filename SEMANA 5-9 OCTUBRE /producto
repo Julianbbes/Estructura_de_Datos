@@ -6,7 +6,7 @@ public class Product {
     private String name;
     private int existence;
     private double price;
-    private String category; // 1. Nuevo atributo agregado
+    private String category; // Reto 1: Atributo agregado
 
     // Constructor para buscar por ID
     public Product(int ID) {
@@ -19,7 +19,7 @@ public class Product {
         this.name = name;
         this.existence = existence;
         this.price = price;
-        this.category = category; // Asignación al crear el producto
+        this.category = category;
     }
 
     // GET: Métodos para consultar datos
@@ -39,7 +39,7 @@ public class Product {
         return price;
     }
 
-    // 2. Método para consultar la categoría
+    // Reto : Método para consultar la categoría
     public String getCategory() {
         return category;
     }
@@ -61,7 +61,7 @@ public class Product {
         this.price = price;
     }
 
-    // 3. Método para modificar la categoría
+    // Reto 1: Método para modificar la categoría
     public void setCategory(String category) {
         this.category = category;
     }
@@ -69,25 +69,20 @@ public class Product {
     // Compara dos productos por su ID
     @Override
     public boolean equals(Object obj) {
-
         if (this == obj) {
             return true;
         }
-
         if (obj == null) {
             return false;
         }
-
         if (getClass() != obj.getClass()) {
             return false;
         }
-
         Product other = (Product) obj;
-
         return this.ID == other.ID;
     }
 
-    // 4. Muestra los datos del producto incluyendo la categoría
+    //  Muestra los datos del producto incluyendo la categoría
     @Override
     public String toString() {
         return "Product{" +
