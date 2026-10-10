@@ -1,92 +1,115 @@
 package inventoryApp;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.Scanner;
 
-public class Inventory {
-    // Lista donde se guardan los productos
-    private List<Product> products;
+public class InventoryApp {
+    private Scanner sc = new Scanner(System.in);
+    private Inventory inventory;
 
-    // Constructor: crea la lista vacía
-    public Inventory() {
-        products = new LinkedList<>();
+    public static void main(String[] args) {
+        InventoryApp app = new InventoryApp();
+        app.init();
     }
 
-    // AGREGAR UN PRODUCTO NUEVO (Actualizado con categoría)
-    public void newProduct(int ID, String name, int existence, double price, String category) {
-        Product newProduct = new Product(ID, name, existence, price, category);
-        boolean success = products.add(newProduct);
+    public void init() {
+        inventory = new Inventory();
+        int op;
+        do {
+            System.out.println("\n\t MENÚ");
+            System.out.println("--- MANEJO DE INVENTARIOS ----");
+            System.out.println("1. Nuevo producto");
+            System.out.println("2. Agregar existencia");
+            System.out.println("3. Eliminar producto");
+            System.out.println("4. Actualizar precio");
+            System.out.println("5. Consultar producto"); // Reto 3: Nueva opción
+            System.out.println("6. Mostrar productos");
+            System.out.println("7. Salir");
+            System.out.println("\nSelecciona una opción:");
+            op = sc.nextInt();
 
-        if (success) {
-            System.out.println("El producto " + name + " se añadió satisfactoriamente");
-        } else {
-            System.out.println("Ocurrió un problema al agregar el producto");
-        }
+            switch (op) {
+                case 1:
+                    newProduct();
+                    break;
+                case 2:
+                    addProduct();
+                    break;
+                case 3:
+                    deleteProduct();
+                    break;
+                case 4:
+                    updateProduct();
+                    break;
+                case 5:
+                    searchProduct(); // Reto 3: Llamada al nuevo método
+                    break;
+                case 6:
+                    printProduct();
+                    break;
+                case 7:
+                    System.out.println("Saliendo del sistema...");
+                    break;
+                default:
+                    System.out.println("Opción inválida.");
+            }
+        } while (op != 7); // Actualizado a 7 para salir
     }
 
-    // AUMENTAR LA EXISTENCIA DE UN PRODUCTO 
-    public void addProduct(int ID) {
-        int productIndex = products.indexOf(new Product(ID));
-        
-        // Reto 2 y 4: Validar si el producto no existe
-        if (productIndex == -1) {
-            System.out.println("El producto no existe");
-            return;
-        }
+    // NUEVO PRODUCTO (Actualizado para pedir categoría)
+    private void newProduct() {
+        System.out.println("ID del producto:");
+        int ID = sc.nextInt();
 
-        Product product = products.get(productIndex);
-        int existenceTemp = product.getExistence();
-        int newExistence = existenceTemp + 1;
-        product.setExistence(newExistence);
-        System.out.println("\nSe agregó una unidad de " + product.getName());
+        System.out.println("Nombre del producto:");
+        String name = sc.next();
+
+        System.out.println("Existencia inicial:");
+        int existence = sc.nextInt();
+
+        System.out.println("Precio del producto:");
+        double price = sc.nextDouble();
+
+        System.out.println("Categoría del producto:"); // Reto 1
+        String category = sc.next();
+
+        // Envía los datos incluyendo la categoría a Inventory
+        inventory.newProduct(ID, name, existence, price, category);
     }
 
-    // CONSULTAR UN PRODUCTO POR ID 
-    public void searchProduct(int ID) {
-        int productIndex = products.indexOf(new Product(ID));
-
-        if (productIndex == -1) {
-            System.out.println("El producto no existe");
-        } else {
-            Product product = products.get(productIndex);
-            System.out.println("\nPRODUCTO ENCONTRADO:");
-            System.out.println(product);
-        }
+    // AGREGAR EXISTENCIA
+    private void addProduct() {
+        System.out.println("ID del producto:");
+        int ID = sc.nextInt();
+        inventory.addProduct(ID);
     }
 
-    // MOSTRAR TODOS LOS PRODUCTOS
-    public void printProducts() {
-        System.out.println("PRODUCTOS EN EL ALMACÉN");
-        products.forEach(System.out::println);
-        System.out.println();
+    // ELIMINAR PRODUCTO
+    private void deleteProduct() {
+        System.out.println("ID del producto:");
+        int ID = sc.nextInt();
+        inventory.deleteProduct(ID);
     }
 
-    // ACTUALIZAR EL PRECIO 
-    public void updateProduct(int ID, double price) {
-        int productIndex = products.indexOf(new Product(ID));
+    // ACTUALIZAR PRECIO
+    private void updateProduct() {
+        System.out.println("ID del producto:");
+        int ID = sc.nextInt();
 
-        // Reto 2 y 4: Validar si el producto no existe
-        if (productIndex == -1) {
-            System.out.println("El producto no existe");
-            return;
-        }
+        System.out.println("Nuevo precio:");
+        double price = sc.nextDouble();
 
-        Product product = products.get(productIndex);
-        product.setPrice(price);
-        System.out.println("\nPrecio actualizado correctamente");
+        inventory.updateProduct(ID, price);
     }
 
-    // ELIMINAR UN PRODUCTO (Con validación de ID existente)
-    public void deleteProduct(int ID) {
-        int productIndex = products.indexOf(new Product(ID));
+    // CONSULTAR PRODUCTO (Reto 3)
+    private void searchProduct() {
+        System.out.println("ID del producto a consultar:");
+        int ID = sc.nextInt();
+        inventory.searchProduct(ID);
+    }
 
-        // Reto 2 y 4: Validar si el producto no existe
-        if (productIndex == -1) {
-            System.out.println("El producto no existe");
-            return;
-        }
-
-        Product deleteProduct = products.remove(productIndex);
-        System.out.println("El producto " + deleteProduct.getName() + " se eliminó");
+    // MOSTRAR PRODUCTOS
+    private void printProduct() {
+        inventory.printProducts();
     }
 }
