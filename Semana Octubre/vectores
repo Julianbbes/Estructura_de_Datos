@@ -1,0 +1,38 @@
+package vector01;
+
+import java.util.Vector;
+
+public class ejercicio_vector {
+    
+    public static void main(String[] args) {
+        
+      Vector<String> estudiantes = new Vector<>(10);
+        
+      estudiantes.add(" Andres");
+        estudiantes.add(" luis");
+        estudiantes.add(" andres");
+        estudiantes.add(" maria");
+        estudiantes.add(" juan");
+      estudiantes.add(" jaime");
+      estudiantes.add("jose");
+      estudiantes.add(" Fabio");
+      estudiantes.add(" Anna");
+      estudiantes.add(" carlos");
+        
+        System.out.println(estudiantes);
+        
+        estudiantes.get(0);
+        estudiantes.add(" ana");
+        
+        System.out.println(estudiantes);
+        
+        estudiantes.set(1, " sara");
+        estudiantes.remove(0);
+        estudiantes.remove(" ana");
+        
+        System.out.println(estudiantes);
+        
+        System.out.println(" tamaño: " + estudiantes.size());
+        System.out.println(" capacidad: " + estudiantes.capacity());
+    }
+}
