@@ -1,7 +1,7 @@
 #  Práctica de Pilas y Colas
 
 **Nombre:** Julián García Rojas  
-**Número de lista:** 10  
+**Número de lista:** 7  
 
 ---
 
