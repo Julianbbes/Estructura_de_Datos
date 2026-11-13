@@ -1,1 +1,33 @@
 
+
+**Nombre:** Julián García Rojas  
+**Número de lista:** 10  
+
+---
+
+##  Ejercicio 1: Pila (`PilaPersonal`)
+Una estructura **LIFO** (Last In, First Out) donde el último elemento en entrar es el primero en salir (estilo torre de platos).
+
+### 🖥️ Salida de la consola:
+```text
+Cima: 10
+Contenido: [10]  <- la cima es el de la derecha
+
+Cima: 22
+Contenido: [10, 22]  <- la cima es el de la derecha
+
+Cima: 4
+Contenido: [10, 22, 4]  <- la cima es el de la derecha
+
+El numero de lista esta en la posicion (desde la cima): 3
+
+Se saco 4
+Cima: 22
+Contenido: [10, 22]  <- la cima es el de la derecha
+
+Se saco 22
+Cima: 10
+Contenido: [10]  <- la cima es el de la derecha
+
+Se saco 10
+La pila esta vacia
