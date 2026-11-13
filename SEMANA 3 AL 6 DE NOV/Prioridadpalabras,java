@@ -1,0 +1,25 @@
+import java.util.PriorityQueue;
+
+public class PrioridadPalabras {
+
+    public static void main(String[] args) {
+
+        // Creamos una cola de prioridad para Strings (palabras)
+        PriorityQueue<String> colaPrioridad = new PriorityQueue<>();
+
+        // TODO 1: Inserta tus datos usando offer()
+        colaPrioridad.offer("Julian");
+        colaPrioridad.offer("Bogota");
+        colaPrioridad.offer("Informatica");
+        colaPrioridad.offer("Java");
+
+        System.out.println("Elementos en la cola de prioridad: " + colaPrioridad);
+
+        // TODO 2: Saca los elementos ordenados alfabéticamente usando poll()
+        System.out.println("\n--- Extrayendo elementos por prioridad alfabetica ---");
+        while (!colaPrioridad.isEmpty()) {
+            String palabraAtendida = colaPrioridad.poll();
+            System.out.println("Se atendio: " + palabraAtendida);
+        }
+    }
+}
