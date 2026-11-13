@@ -1,7 +1,15 @@
-Práctica de pilas y colas
+# 📚 Práctica de Pilas y Colas
 
-Nombre: Julián García Rojas
+**Nombre:** Julián García Rojas  
+**Número de lista:** 10  
 
-Número de lista: 10
+---
 
-Ejercicio 1: Pila (PilaPersonal)
+##  Ejercicio 1: Pila (`PilaPersonal`)
+
+
+### 🖥️ Salida de la consola:
+
+
+Se saco 10
+La pila esta vacia
